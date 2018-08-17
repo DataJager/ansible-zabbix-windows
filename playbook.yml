@@ -1,0 +1,7 @@
+---
+- hosts: all
+  roles:
+    - zabbix-agent
+  vars_prompt:
+    - name: "zabbix_server"
+      prompt: "Enter zabbix server hostname"

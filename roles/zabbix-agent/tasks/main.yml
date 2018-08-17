@@ -1,0 +1,19 @@
+---
+- name: Ensure zabbix-agent is installed with chocolatey
+  win_chocolatey:
+    name: zabbix-agent
+    state: present
+
+- name: Update zabbix_agentd.conf with ServerActive= info
+  win_lineinfile:
+    path: "{{ ansible_env.ProgramData }}\\zabbix\\zabbix_agentd.conf"
+    regexp: "ServerActive=.*"
+    line: "ServerActive={{ zabbix_server }} "
+  notify: "restart zabbix agent"
+
+- name: Update zabbix_agentd.conf with Server= info
+  win_lineinfile:
+    path: "{{ ansible_env.ProgramData }}\\zabbix\\zabbix_agentd.conf"
+    regexp: '^Server=.*$'
+    line: 'Server={{ zabbix_server }}'
+  notify: "restart zabbix agent"

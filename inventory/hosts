@@ -1,0 +1,4 @@
+[win]
+127.0.0.1
+[win:vars]
+ansible_connection=winrm

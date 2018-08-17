@@ -1,0 +1,7 @@
+---
+### Enable zabbix agent service and restart
+- name: Start Zabbix Agent
+  win_service:
+    name: "zabbix agent"
+    state: restarted
+    listen: "restart zabbix agent"
